@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1><i class="fas fa-box-open"></i> Inventory Management</h1>
+            <nav>
+                <ul>
+                    <li><a href="#products"><i class="fas fa-cogs"></i> Products</a></li>
+                    <li><a href="#vendors"><i class="fas fa-truck"></i> Vendors</a></li>
+                    <li><a href="#orders"><i class="fas fa-box"></i> Purchase Orders</a></li>
+                    <li><a href="#shipments"><i class="fas fa-shipping-fast"></i> Shipments</a></li>
+                    <li><a href="#add-item"><i class="fas fa-plus"></i> Add Item</a></li>
+                    <li><a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-login" class="close">&times;</span>
+            <h2>User Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <!-- Products Section -->
+        <section id="products">
+            <h2><i class="fas fa-cogs"></i> Products</h2>
+            <table id="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Location</th>
+                        <th>Manufacturer</th>
+                        <th>Stock Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be dynamically inserted here from the backend -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Vendors Section -->
+        <section id="vendors">    
+            <h2><i class="fas fa-truck"></i> Vendors</h2>
+            <table id="vendor-table">
+                <thead>
+                    <tr>
+                        <th>Vendor Name</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be dynamically inserted here from the backend -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Purchase Orders Section -->
+        <section id="orders">
+            <h2><i class="fas fa-box"></i> Purchase Orders</h2>
+            <table id="purchase-order-table">
+                <thead>
+                    <tr>
+                        <th>PO No</th>
+                        <th>Date</th>
+                        <th>Vendor Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be dynamically inserted here from the backend -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Shipments Section -->
+        <section id="shipments">
+            <h2><i class="fas fa-shipping-fast"></i> Shipments</h2>
+            <table id="shipment-table">
+                <thead>
+                    <tr>
+                        <th>Shipment No</th>
+                        <th>PO No</th>
+                        <th>Shipment Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be dynamically inserted here from the backend -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Add Item Form -->
+        <section id="add-item">
+            <h2><i class="fas fa-plus"></i> Add New Product</h2>
+            <form id="add-product-form">
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" name="item-name" required>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" required>
+
+                <label for="unit-price">Unit Price:</label>
+                <input type="number" id="unit-price" name="unit-price" step="0.01" required>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+
+                <label for="manufacturer">Manufacturer:</label>
+                <input type="text" id="manufacturer" name="manufacturer">
+
+                <button type="submit"><i class="fas fa-save"></i> Add Product</button>
+                <button id="remove-duplicates-btn">Remove Duplicates</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Inventory Management System | All rights reserved</p>
+    </footer>
+
+    <!-- Scripts for fetching data and handling form submissions -->
+    <script src="script.js"></script>
+
+    <!-- Modal JavaScript -->
+    <script>
+        // Get modal and buttons
+        var modal = document.getElementById("login-modal");
+        var btn = document.getElementById("login-btn");
+        var span = document.getElementById("close-login");
+
+        // Open modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Close modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById("login-form").onsubmit = function(e) {
+            e.preventDefault();
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // You can add AJAX or a form submission here for actual authentication
+
+            alert("Logged in as " + username); // Temporary for testing
+            modal.style.display = "none"; // Close the login modal after submission
+        }
+    </script>
+</body>
+</html>
